@@ -1,0 +1,182 @@
+1.
+
+#include <stdio.h>
+#include<stdlib.h>
+void unos(char slova[50]);
+void samoglasnik(char slova[50]);
+
+int main() {
+    char slova[50];
+    unos(slova);
+    samoglasnik(slova);
+    system("pause");
+    return 0;
+}
+
+void unos(char slova[50]) {
+    for (int i = 0; i < 50; i++) {
+        scanf_s("%c", &slova[i]);
+    }
+}
+void samoglasnik(char slova[50]) {
+    int brojac = 0;
+    for (int i = 0; i < 50; i++) {
+        if (slova[i] == 97 || slova[i] == 101 || slova[i] == 105 || slova[i] == 111 || slova[i] == 117 || slova[i] == 65 || slova[i] == 69 || slova[i] == 73 || slova[i] == 79 || slova[i] == 85) {
+            printf("%c\n",slova[i]);
+            brojac++;
+        }
+    }
+    printf("Od 50 unesenih znakova ima %d samoglasnika. \n", brojac);
+}
+
+2.
+
+#include<stdio.h>
+#include<stdlib.h>
+void ispis(float niz[100], int i, float prosjek);
+int main() {
+	float broj,suma=0,prosjek,niz[100]={0};
+	int i = 0;
+	printf("Unesite brojeve:\n");
+	do
+	{
+		scanf_s("%f", &broj);
+		niz[i] = broj;
+		i++;
+		suma = suma + broj;
+		prosjek = suma / i;
+		
+
+
+
+	} while (broj>=prosjek);
+	printf("Prosjek unesenih brojeva je: %.2f\n", prosjek);
+	ispis(niz,i,prosjek);
+	system("pause");
+	return 0;
+}
+void ispis(float niz[100],int i,float prosjek) {
+	printf("Brojevi koji su veci od prosjeka su:\n");
+	for (int j = 0; j < i; j++)
+	{
+		if (niz[j]>prosjek && niz[j] != 0)
+		{
+			printf("%.2f\n", niz[j]);
+		}
+	}
+
+}
+
+3.
+
+#include <stdio.h>
+#include <stdlib.h>
+void unos(float broj[20]);
+float prosjek(float broj[20]);
+float najblizi(float broj[20]);
+
+int main() {
+    float broj[20];
+    unos(broj);
+    printf("Prosjek tih 20 brojeva je: %f.\n", prosjek(broj));
+    printf("Broj %f je najblizi broj prosjeku od unesenih brojeva.\n", najblizi(broj));
+    system("pause");
+    return 0;
+}
+void unos(float broj[20]) {
+    for (int i = 0; i < 20; i++) {
+        scanf_s(" %f", &broj[i]);
+    }
+}
+float prosjek(float broj[20]) {
+    float avg = 0;
+    for (int i = 0; i < 20; i++) {
+        avg = avg + broj[i];
+    }
+    avg = avg / 20;
+    return avg;
+}
+float najblizi(float broj[20]) {
+    float niz2[20],min;
+    float avg = 0;
+    for (int i = 0; i < 20; i++) {
+        avg = avg + broj[i];
+    }
+    avg = avg / 20;
+    for (int i = 0; i < 20; i++)
+    {
+        niz2[i] = abs(avg - broj[i]);
+    }
+    min = niz2[0];
+    for (int i=1; i < 20; i++)
+    {
+        if (min < niz2[i])
+        {
+            min = niz2[i];
+        }
+    }
+    return min;
+}
+
+4.
+
+#include <stdio.h>
+#include<stdlib.h>
+void ispis(char znak[10]);
+
+int main() {
+    printf("Unesi 10 znakova: \n");
+    char znak[10];
+    for (int i = 0; i < 10; i++) {
+        scanf_s(" %c", &znak[i]);
+    }
+    ispis(znak);
+    system("pause");
+    return 0;
+}
+
+void ispis(char znak[10]) {
+    for (int i = 0; i < 10; i++) {
+        if ((znak[i] >= 65 && znak[i] <= 90) || (znak[i] >= 97 && znak[i] <= 122)) {
+            
+        }
+        else {
+            printf("%c\n", znak[i]);
+        }
+    }
+}
+
+5.
+
+#include <stdio.h>
+#include<stdlib.h>
+
+int srednji(int broj[3]);
+void ispis(int broj[3]);
+
+int main() {
+    int broj[3];
+    printf("Unesi 3 broja.\n");
+    for (int i = 0; i < 3; i++) {
+        scanf_s("%d", &broj[i]);
+    }
+    ispis(broj);
+    system("pause");
+    return 0;
+}
+int srednji(int broj[3]) {
+    int sr;
+    if (broj[1] > broj[0] && broj[0] > broj[2] || broj[2] > broj[0] && broj[0] > broj[1]) {
+        sr = broj[0];
+    }
+    else if (broj[0] > broj[1] && broj[1] > broj[2] || broj[2] > broj[1] && broj[1] > broj[0]) {
+        sr = broj[1];
+    }
+    else {
+        sr = broj[2];
+    }
+    return sr;
+}
+void ispis(int broj[3]) {
+    printf("Broj %d je srednji po velicini.\n", srednji(broj));
+}

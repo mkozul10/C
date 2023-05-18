@@ -1,0 +1,241 @@
+1.[5]
+#include<stdio.h>
+#include<stdlib.h>
+
+void unos(int a[30]);
+void statistika(int a[30], int* zbr, int* pros); //float umjesto int
+
+int main()
+{
+
+	int a[30], zbroj, prosjek;
+	unos(a);
+	statistika(a, &zbroj, &prosjek);
+	printf("Zbroj svih brojeva je: %d \n", zbroj);
+	printf("Prosjek brojeva je: %d", prosjek);
+	system("pause");
+	return 0;
+
+}
+
+void unos(int a[30])
+{
+
+	for (int i = 0; i < 30; i++)
+	{
+		scanf_s("%d", &a[i]);
+	}
+}
+
+void statistika(int a[30], int* zbr, int* pros) //int
+{
+	int zbroj = 0;
+	int prosjek = 0;
+	int br = 0;
+
+	for (int i = 0; i < 30; i++)
+	{
+		br++;
+		zbroj = zbroj + a[i];
+	}
+	prosjek = zbroj / br;
+
+	*zbr = zbroj;
+	*pros = prosjek;
+
+}
+
+
+1.
+
+
+#include<stdio.h>
+#include<stdlib.h>
+void ispis(char niz[20]);
+int main() {
+	char niz[20];
+	for (int i = 0; i < 20; i++)
+	{
+		scanf_s(" %c", &niz[i]);
+	}
+	ispis(niz);
+	system("pause");
+	return 0;
+}
+void ispis(char niz[20]) {
+	for (int i = 0; i < 20; i++)
+	{
+		if (niz[i] >= 65 && niz[i] <= 90)
+		{
+			niz[i] = niz[i] + 32;
+			printf(" %c\n", niz[i]);
+		}
+		else if (niz[i] >= 97 && niz[i] <= 122)
+		{
+			niz[i] = niz[i] - 32;
+			printf(" %c", niz[i]);
+		}
+		else if ((niz[i] < 65 && niz[i] > 90) && (niz[i] < 97 && niz[i] > 122))
+		{
+			printf(" %c\n", niz[i]);
+		}
+		printf("\n");
+	}
+}
+
+
+2.
+
+#include<stdio.h>
+#include<stdlib.h>
+int najveci(int niz[100], int i);
+void svi_prosti(int najveci_);
+int main() {
+	int niz[100],i=0,prost=0,pom,najveci_;
+	printf("Unesite cijele brojeve\n");
+	do
+	{
+		prost = 0;
+		scanf_s("%d", &niz[i]);
+		for (int j = 2; j < niz[i]; j++)
+		{
+			if (niz[i] % j !=0)
+			{
+				prost++;
+			}
+		}
+		pom = niz[i];
+		i++;
+		
+	} while ((prost+2)!=pom);
+	najveci_ = najveci(niz, i);
+	svi_prosti(najveci_);
+	system("pause");
+	return 0;
+}
+int najveci(int niz[100], int i) {
+	int najveci;
+	for (int j = 0; j < i; j++)
+	{
+		for (int k = j+1; k < i; k++)
+		{
+			if (niz[j] > niz[k])
+			{
+				najveci = niz[j];
+			}
+		}
+	}
+	return najveci;
+}
+void svi_prosti(int najveci_) {
+
+	int prost = 2;
+	printf("Prosti brojevi manji od najveceg unesenog broja su:\n");
+	printf("%d\n", prost);
+	do {
+		prost++;
+
+
+		int brojac = 0;
+
+		for (int i = 2; i < prost; i++)
+		{
+			if (prost % i == 0)
+				brojac++;
+		}
+		if (brojac != 0)
+		{
+
+		}
+		else
+		{
+			printf("%d\n", prost);
+		}
+	} while (prost < najveci_);
+
+}
+
+4.
+
+#include<stdio.h>
+#include<stdlib.h>
+void ispis(float niz[100], int i);
+int main() {
+	float niz[100];
+	int i = 0,brojac=0;
+	printf("Unosite realne brojeve\n");
+	scanf_s("%f", &niz[i]);
+	
+	do
+	{
+		i++;
+		scanf_s("%f", &niz[i]);
+		for (int j = 0; j < i; j++)
+		{
+			for (int k = j + 1; k <= i; k++)
+			{
+				if (niz[k] == niz[j])
+					brojac++;
+			}
+		}
+	} while (brojac!=1);
+	printf("Realni brojevi ciji je cijeli dio 100 puta veci od decimalnog dijela su:\n");
+	ispis(niz, i);
+	system("pause");
+	return 0;
+}
+void ispis(float niz[100], int i) {
+	float decimalni_dio, cijeli_dio;
+	for (int j = 0; j < i; j++)
+	{
+		cijeli_dio = (int)niz[j];
+		decimalni_dio = niz[j]-cijeli_dio;
+		if (cijeli_dio >(decimalni_dio*100))
+		{
+			printf("%.3f\n", niz[j]);
+		}
+		else
+		{
+
+		}
+	}
+}
+
+
+5.
+
+#include<stdio.h>
+#include<stdlib.h>
+int jesu_li_velika_slova(char niz[20]);
+int main() {
+	char niz[20];
+	for (int i = 0; i < 20; i++)
+	{
+		scanf_s(" %c", &niz[i]);
+	}
+	if (jesu_li_velika_slova(niz))
+	{
+		printf("Svi uneseni znakovi su veliki\n");
+	}
+	else
+	{
+		printf("Svi uneseni znakovi nisu veliki\n");
+	}
+	system("pause");
+	return 0;
+}
+int jesu_li_velika_slova(char niz[20]) {
+	for (int i = 0; i < 20;i++)
+	{
+		if (niz[i] >= 65 && niz[i] <= 90)
+			return 1;
+		else
+			return 0;
+	}
+	return jesu_li_velika_slova(niz);
+}
+
+
+
+
+

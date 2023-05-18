@@ -1,0 +1,210 @@
+1.
+#include<stdio.h>
+#include<stdlib.h>
+void ispis(int niz[30]);
+void statistika(int niz[30]);
+int main() {
+	int niz[30];
+	ispis(niz);
+	statistika(niz);
+	system("pause");
+	return 0;
+}
+void ispis(int niz[30])
+{
+	printf("Unesite 30 brojeva:\n");
+	for (int i = 0; i < 30; i++)
+	{
+		scanf_s("%d", &niz[i]);
+	}
+}
+void statistika(int niz[30])
+{
+	float suma = 0;
+	float prosjek;
+	for (int i = 0; i < 30; i++)
+	{
+		suma = suma + niz[i];
+		prosjek = suma / i;
+	}
+	printf("Zbroj unesenih brojeva iznosi %.1f\n Prosjek unesenih brojeva iznosi %.2f\n", suma, prosjek);
+}
+
+2.
+
+#include<stdio.h>
+#include<stdlib.h>
+void obrada(char niz[100],int brojac);
+int main() {
+	char niz[100];
+	int i = 2,brojac=0;
+	printf("Unesite znakove:\n");
+	scanf_s(" %c", &niz[0]);
+	scanf_s(" %c", &niz[1]);
+	scanf_s(" %c", &niz[2]);
+	if ((niz[0] == niz[1]) && (niz[0] == niz[2]))
+	{
+		goto ovdje;
+	}
+	else
+	{
+		do
+		{
+			i++;
+			scanf_s(" %c", &niz[i]);
+			if ((niz[i] == niz[i - 1]) && (niz[i] == niz[i - 2]))
+			{
+				brojac += i;
+				goto ovdje;
+			}
+		} while (brojac!=i);
+	}
+ovdje:
+	obrada(niz, brojac);
+	
+
+	system("pause");
+	 return 0;
+}
+void obrada(char niz[100],int brojac){
+    for (int i = 0; i < brojac; i++)   //sortiran niz
+    {
+        int temp;
+        for (int j = i + 1; j < brojac; j++)
+        {
+            if (niz[i] > niz[j])
+            {
+                temp = niz[i];
+                niz[i] = niz[j];
+                niz[j] = temp;
+            }
+        }
+    }
+   //znak koji se najvise ponavlja
+    int max_count = 1,count = 1,brojac_najvise_unesenog_znaka=0;
+    char res = niz[0];
+    for (int i = 1; i < brojac; i++) {
+        if (niz[i] == niz[i - 1]) {
+            count++;
+        }
+  
+        else {
+            if (count > max_count) {
+                max_count = count;
+                res = niz[i - 1];
+            }
+            count = 1;
+        }
+    }
+    // ako je zadnji znak najvise puta unesen
+    if (count > max_count)
+    {
+        max_count = count;
+        res = niz[brojac - 1];
+    }
+    for (int i = 0; i <= brojac; i++)
+    {
+        if (niz[i] == res)
+        {
+            brojac_najvise_unesenog_znaka++;
+        }
+    }
+  printf("Znak koji je unesen najvise puta(%d) je %c.\n",brojac_najvise_unesenog_znaka, res);
+}
+
+3.
+
+#include<stdio.h>
+#include<stdlib.h>
+void unos(float niz[15]);
+void par_najblizih(float niz[15]);
+int main() {
+	
+	float niz[15];
+	unos(niz);
+	par_najblizih(niz);
+	system("pause");
+	return 0;
+}
+void unos(float niz[15])
+{
+	printf("Unesite 15 brojeva:\n");
+	for (int i = 0; i < 15; i++)
+	{
+		scanf_s("%f", &niz[i]);
+	}
+}
+void par_najblizih(float niz[15])
+{
+	int n = 15, k = 0, l = 1;
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = i; j < n - 1; j++)
+		{
+			if (abs(niz[j] - niz[j + 1]) < abs(niz[k] - niz[l]))
+			{
+				k = j;
+				l = j + 1;
+			}
+		}
+	}
+	printf("Dva najbliza broja su %f i %f.\n", niz[k], niz[l]);
+
+}
+
+4.
+
+#include <stdio.h>
+#include <stdlib.h>
+int ima_li_0(int num, int contains);
+
+int main() {
+    int num, contains = 0;
+    scanf_s("%d", &num);
+    if (ima_li_0(num, contains)) {
+        printf("Broj %d sadrzi znamenku %d!\n", num, contains);
+    }
+    else {
+        printf("Broj %d ne sadrzi znamenku %d!\n", num, contains);
+    }
+    system("pause");
+    return 0;
+}
+
+int ima_li_0(int num, int contains) {
+    if (num == 0) {
+        return 0;
+    }
+    int digit = abs(num) % 10;
+    if (digit == contains) {
+        return 1;
+    }
+    return ima_li_0(num / 10, contains);
+}
+
+5.
+
+#include <stdio.h>
+#include<stdlib.h>
+int je_li_sortiran(int broj[5], int n);
+
+int main() {
+    int broj[5], n = 5;
+    for (int i = 0; i < 5; i++) {
+        scanf_s("%d", &broj[i]);
+    }
+    if (je_li_sortiran(broj, n)) {
+        printf("Niz je uzlazno sortiran\n");
+    }
+    else {
+        printf("Niz nije uzlazno sortiran\n");
+    }
+    system("pause");
+    return 0;
+}
+int je_li_sortiran(int broj[5], int n) {
+    if (broj[n - 1] < broj[n - 2]) {
+        return 0;
+    }
+    return je_li_sortiran(broj, n - 1);
+}
